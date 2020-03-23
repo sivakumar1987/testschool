@@ -19,6 +19,12 @@ public class TestController {
 			responseSchoolDetails.setSchoolName("St.Anns Hr Sec School");
 			return responseSchoolDetails;
 		}
+		if(schoolId.equals("2"))
+		{
+			ResponseSchoolDetails responseSchoolDetails = new ResponseSchoolDetails();
+			responseSchoolDetails.setSchoolName("St.Josephs Hr Sec School");
+			return responseSchoolDetails;
+		}
 		else {
 			return null;
 		}
