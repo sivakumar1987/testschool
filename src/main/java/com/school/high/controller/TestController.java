@@ -1,7 +1,9 @@
 package com.school.high.controller;
 
-import javax.annotation.PostConstruct;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +18,10 @@ import com.school.high.response.ResponseSchoolDetails;
 @RequestMapping("/test/School")
 public class TestController {
 	
+	Logger logger = LoggerFactory.getLogger(TestController.class);
 	@GetMapping("/getSchoolName/{schoolId}")
 	 ResponseSchoolDetails getSchoolName(@PathVariable String schoolId) {
+		logger.info(" Get School Name  :: getSchoolName() started");
 		if(schoolId.equals("1"))
 		{
 			ResponseSchoolDetails responseSchoolDetails = new ResponseSchoolDetails();
