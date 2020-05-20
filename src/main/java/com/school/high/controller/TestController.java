@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.school.high.repository.SchoolDeatilsRepo;
 import com.school.high.response.ResponseSchoolDetails;
 
+import javassist.NotFoundException;
+
 @RestController
 @RequestMapping("/school")
 public class TestController {
@@ -26,11 +28,9 @@ public class TestController {
 	SchoolDeatilsRepo schoolRepo;
 	Logger logger = LoggerFactory.getLogger(TestController.class);
 	@GetMapping("/getSchoolName/{schoolId}")
-	 Optional<ResponseSchoolDetails> getSchoolName(@PathVariable int schoolId) {
-		logger.info(" Get School Name  :: getSchoolName() Started");
-		Optional<ResponseSchoolDetails> rsp =schoolRepo.findById(schoolId);
-		logger.info(" Get School Name  :: getSchoolName() Completed");
-		return rsp;
+		ResponseSchoolDetails getSchoolName(@PathVariable int schoolId) throws NotFoundException  {
+			logger.info(" Get School Name  :: getSchoolName() ");
+			return schoolRepo.findById(schoolId).orElseThrow(() -> new NotFoundException("school not found with id " + schoolId));
 		
 		
 	}
